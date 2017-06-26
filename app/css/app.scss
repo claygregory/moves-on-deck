@@ -1,0 +1,88 @@
+
+@import "mapbox-gl/dist/mapbox-gl";
+
+$font_size: 16px;
+$font_size_small: 12px;
+
+$line_height: 20px;
+
+$padding: 16px;
+$mobile_width: 640px;
+
+html, body {
+	background-color: #3F3E3E;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	font-weight: 300;
+	font-size: $font_size;
+	line-height: $line_height;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-weight: 300;
+}
+
+h3 {
+	color: #999;
+	margin-top: $padding;
+	margin-bottom: $padding / 4;
+	font-size: $font_size_small;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+#app-container, .drop-zone {
+	display: block;
+	height: 100%;
+	width: 100%;
+
+
+}
+
+#control-panel {
+	background-color: white;
+	position: absolute;
+	top: $padding;
+	left: $padding;
+	padding: $padding;
+	width: 320px;
+	z-index: 100;
+
+	-webkit-user-select: none;  
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;
+
+	@media (max-width: $mobile_width) {
+		right: $padding;
+		width: auto;
+	}
+}
+
+.layer-selector {
+
+	input {
+		margin-right: $padding / 2;
+	}
+
+	label {
+		display: block;
+		font-size: $font_size_small;
+
+		& + label {
+			margin-top: $padding / 8;
+		}
+	}
+
+	.layer-detail {
+		color: #999;
+		font-size: $font_size_small;
+		float: right;
+	}
+
+}
