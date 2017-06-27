@@ -3,6 +3,7 @@ const clean = require('gulp-clean');
 
 const babelify = require('babelify');
 const browserify = require('browserify');
+const bundleCollapser = require('bundle-collapser/plugin');
 const envify = require('envify');
 const uglify = require('gulp-uglify');
 
@@ -27,9 +28,11 @@ gulp.task('build-html', function () {
 });
 
 gulp.task('build-js', function () {
-  return browserify({ entries: 'app/js/app.jsx', extensions: ['.js', '.jsx'], debug: production })
-    .transform('babelify', { presets: ['es2015', 'react'], plugins: ['transform-object-rest-spread'] })
-    .transform(envify)
+  process.env.NODE_ENV = production ? 'production' : 'development';
+  return browserify({ entries: 'app/js/app.jsx', extensions: ['.js', '.jsx'], debug: !production })
+      .plugin(bundleCollapser)
+      .transform(babelify, { presets: ['es2015', 'react'], plugins: ['transform-object-rest-spread'] })
+      .transform(envify)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())
