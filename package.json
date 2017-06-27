@@ -1,5 +1,5 @@
 {
-  "name": "moves-on-deck",
+  "name": "@claygregory/moves-on-deck",
   "version": "1.0.0",
   "description": "Interactive visualization of Moves-App location history using deck.gl",
   "scripts": {
