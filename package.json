@@ -17,6 +17,7 @@
     "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "luma.gl": "^3.0.2",
+    "moment": "^2.18.1",
     "npm-sass": "^2.2.1",
     "react": "^15.6.1",
     "react-autobind": "^1.0.6",

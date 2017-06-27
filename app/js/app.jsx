@@ -18,7 +18,7 @@ class App extends React.PureComponent {
     super(props);
     this.state = {
       viewport: {
-        latitude: 15,
+        latitude: 20,
         longitude: 0,
         zoom: 1.5,
         width: 500,
@@ -86,7 +86,7 @@ class App extends React.PureComponent {
 
   _loadHistory(history) {
     this.setState({
-      viewport: { ...this.state.viewport, zoom: 10, latitude: history.home[1], longitude: history.home[0] },
+      viewport: { ...this.state.viewport, zoom: 10, latitude: _.get(history, 'home.location.lat'), longitude: _.get(history, 'home.location.lon') },
       history: history,
       activeLayers: _.union(_.keys(history.moves).sort(), ['places'])
     });

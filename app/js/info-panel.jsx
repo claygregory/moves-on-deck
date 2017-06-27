@@ -2,13 +2,14 @@ import React from 'react';
 
 import GettingStarted from './getting-started';
 import Layers from './layers';
+import Summary from './summary';
 
 import autobind from 'react-autobind';
 
 const titles = {
   'default': 'Your Moves',
   'getting-started': 'Moves On Deck',
-  'layers': 'Visible Layers'
+  'layers': 'Visible Layers',
 };
 
 export default class InfoPanel extends React.PureComponent {
@@ -76,6 +77,10 @@ export default class InfoPanel extends React.PureComponent {
 
         {(view === 'getting-started' &&
           <GettingStarted/>
+        )}
+
+        {(view === 'default' &&
+          <Summary data={this.props.history}/>
         )}
 
         {(view === 'layers' &&

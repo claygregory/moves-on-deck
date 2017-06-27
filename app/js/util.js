@@ -11,47 +11,23 @@ const colors = {
   other: [255,  87, 20, 120]
 };
 
-const latLonToPair = latLon => {
-  return [latLon.lon, latLon.lat];
-};
-
-const parseFile = (file, callback) => {
-  const reader = new FileReader();
-
-  reader.onload = evt => {
-    callback(null, JSON.parse(evt.target.result));
-  };
-
-  reader.readAsText(file);
-};
-
-const processStoryline = json => {
-  const segments = _.flatMap(json, 'segments');
-
-  const movesCleaner = new MovesCleaner();
-  const normalizedSegments = movesCleaner.apply(segments);
-
-  const home = _.chain(normalizedSegments)
-    .filter(['type', 'place'])
-    .filter(s => _.get(s, 'place.name', '') === 'Home')
-    .map(s => _.get(s, 'place.location'))
-    .map(latLonToPair)
-    .first()
-    .value(); 
-
-  const moves = _.chain(normalizedSegments)
+const buildMoves = storyline => {
+  return _.chain(storyline)
     .filter(['type', 'move'])
     .groupBy('activity')
     .mapValues(segments => _.map(segments, segment => {
       return {
         type: segment.activity === 'airplane' && segment.distance > 10000 ? 'arc' : 'path',
+        distance: segment.distance,
         path: _.map(segment.trackPoints, latLonToPair),
         color: _.get(colors, segment.activity, colors.other)
       };
     }))
     .value();
+};
 
-  const places = _.chain(normalizedSegments)
+const buildPlaces = storyline => {
+  return _.chain(storyline)
     .filter(['type', 'place'])
     .groupBy('place.id')
     .mapValues((visits, id) => {
@@ -75,11 +51,52 @@ const processStoryline = json => {
     })
     .values()
     .value();
+};
+
+const locateHome = storyline => {
+  return _.chain(storyline)
+    .filter(['type', 'place'])
+    .filter(s => _.get(s, 'place.name', '') === 'Home')
+    .map(s => _.get(s, 'place'))
+    .first()
+    .value();
+};
+
+const latLonToPair = latLon => {
+  return [latLon.lon, latLon.lat];
+};
+
+const parseFile = (file, callback) => {
+  const reader = new FileReader();
+
+  reader.onload = evt => {
+    callback(null, JSON.parse(evt.target.result));
+  };
+
+  reader.readAsText(file);
+};
+
+const processStoryline = json => {
+  const segments = _.flatMap(json, 'segments');
+
+  const movesCleaner = new MovesCleaner();
+  const normalizedSegments = movesCleaner.apply(segments);
+
+  const home = locateHome(normalizedSegments);
+  const moves = buildMoves(normalizedSegments);
+  const places = buildPlaces(normalizedSegments);
+
+  const summary = {
+    since: _.chain(normalizedSegments).map('startTime').sortBy().first().value(),
+    unique_places: places.length,
+    total_distance: _.reduce(_.flatten(_.values(moves)), (sum, move) => sum + (move.distance || 0), 0) / 1000
+  };
 
   return {
     home,
     moves,
-    places
+    places,
+    summary
   };
 };
 

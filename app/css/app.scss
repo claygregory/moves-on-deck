@@ -4,8 +4,10 @@
 $color_background: #343332;
 $color_light: #999;
 
-$font_size: 16px;
+$font_size: 14px;
 $font_size_small: 12px;
+$font_size_tiny: 10px;
+$font_size_title: 24px;
 
 $line_height: 20px;
 
@@ -39,12 +41,21 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
 }
 
+h2 {
+	font-size: $font_size_title;
+}
+
 h3 {
 	color: $color_light;
+	margin-top: $padding_base;
 	margin-bottom: $padding_base / 4;
 	font-size: $font_size_small;
 	font-weight: 500;
 	text-transform: uppercase;
+
+	&:first-child {
+		margin-top: 0;
+	}
 }
 
 header {
@@ -53,7 +64,10 @@ header {
 
 footer {
 	margin-top: $padding_base * 2;
-	font-size: $font_size_small;
+
+	&.credits {
+		font-size: $font_size_tiny;
+	}
 }
 
 p {
@@ -127,7 +141,7 @@ p {
 	padding: $padding_base;
 	position: absolute;
 	top: $padding_base;
-	width: 360px;
+	width: 400px;
 	z-index: 100;
 
 	-webkit-user-select: none;  
