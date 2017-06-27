@@ -1,16 +1,19 @@
 
 @import "mapbox-gl/dist/mapbox-gl";
 
+$color_background: #343332;
+$color_light: #999;
+
 $font_size: 16px;
 $font_size_small: 12px;
 
 $line_height: 20px;
 
-$padding: 16px;
-$mobile_width: 640px;
+$padding_base: $line_height;
+$mobile_breakpoint: 520px;
 
 html, body {
-	background-color: #3F3E3E;
+	background-color: $color_background;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 	font-weight: 300;
 	font-size: $font_size;
@@ -22,18 +25,43 @@ html, body {
 	padding: 0;
 }
 
+a {
+	color: #6969FC;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	font-weight: 300;
 }
 
 h3 {
-	color: #999;
-	margin-top: $padding;
-	margin-bottom: $padding / 4;
+	color: $color_light;
+	margin-bottom: $padding_base / 4;
 	font-size: $font_size_small;
 	font-weight: 500;
 	text-transform: uppercase;
+}
+
+header {
+	margin: 0;
+}
+
+footer {
+	margin-top: $padding_base * 2;
+	font-size: $font_size_small;
+}
+
+p {
+	margin: 0;
+
+	& + p {
+		margin-top: $line_height;
+	}
 }
 
 #app-container, .drop-zone {
@@ -44,13 +72,62 @@ h3 {
 
 }
 
-#control-panel {
+.icon {
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display: inline-block;
+	height: 20px;
+	margin-left: $padding_base;
+	overflow: hidden;
+	text-decoration: none;
+	text-indent: 100%;
+	white-space: nowrap;
+	width: 20px;
+}
+
+.icon-layers {
+	background-image: url(inline-image('icon-layers.png'));
+}
+
+.icon-layers:hover {
+	background-image: url(inline-image('icon-layers-over.png'));
+}
+
+.icon-layers.active {
+	background-image: url(inline-image('icon-layers-active.png'));
+}
+
+.icon-layers.active:hover {
+	background-image: url(inline-image('icon-layers-active-over.png'));
+}
+
+.icon-minimize {
+	background-image: url(inline-image('icon-minimize.png'));
+}
+
+.icon-minimize:hover {
+	background-image: url(inline-image('icon-minimize-over.png'));
+}
+
+.icon-minimize.active {
+	background-image: url(inline-image('icon-minimize-active.png'));
+}
+
+.icon-minimize.active:hover {
+	background-image: url(inline-image('icon-minimize-active-over.png'));
+}
+
+.info-panel {
 	background-color: white;
+	box-sizing: border-box;
+	left: $padding_base;
+	overflow: hidden;
+	max-height: 100%;
+	padding: $padding_base;
 	position: absolute;
-	top: $padding;
-	left: $padding;
-	padding: $padding;
-	width: 320px;
+	top: $padding_base;
+	width: 360px;
 	z-index: 100;
 
 	-webkit-user-select: none;  
@@ -58,8 +135,28 @@ h3 {
   -ms-user-select: none;      
   user-select: none;
 
-	@media (max-width: $mobile_width) {
-		right: $padding;
+	-webkit-transition: max-height 0.5s ease-in;
+	transition: max-height 0.5s ease-in;
+
+  &.minimized {
+  	max-height: $line_height + 2 * $padding_base;
+  	-webkit-transition-timing-function: ease-out;
+  	transition-timing-function: ease-out;
+  }
+
+  header {
+
+		padding-bottom: $padding_base;
+
+  	.tools {
+  		float: right;
+  		display: block;
+  		height: 24px;
+  	}
+  }
+
+	@media (max-width: $mobile_breakpoint) {
+		right: $padding_base;
 		width: auto;
 	}
 }
@@ -67,7 +164,7 @@ h3 {
 .layer-selector {
 
 	input {
-		margin-right: $padding / 2;
+		margin-right: $padding_base / 2;
 	}
 
 	label {
@@ -75,14 +172,13 @@ h3 {
 		font-size: $font_size_small;
 
 		& + label {
-			margin-top: $padding / 8;
+			margin-top: $padding_base / 8;
 		}
 	}
 
 	.layer-detail {
-		color: #999;
+		color: $color_light;
 		font-size: $font_size_small;
 		float: right;
 	}
-
 }

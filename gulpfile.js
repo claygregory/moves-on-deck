@@ -8,6 +8,7 @@ const uglify = require('gulp-uglify');
 
 const sass = require('gulp-sass');
 const npmSass = require('npm-sass');
+const sassInlineImage = require('sass-inline-image');
 
 const buffer = require('vinyl-buffer');
 const gutil = require('gulp-util');
@@ -38,7 +39,11 @@ gulp.task('build-js', function () {
 
 gulp.task('build-css', function () {
   return gulp.src('app/**/*.scss')
-    .pipe(sass({ outputStyle: 'compressed', importer: npmSass.importer }).on('error', sass.logError))
+    .pipe(sass({
+      functions: sassInlineImage({ base: './app/images' }),
+      importer: npmSass.importer,
+      outputStyle: 'compressed'
+    }).on('error', sass.logError))
     .pipe(gulp.dest('dist'));
 });
 

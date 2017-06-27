@@ -55,9 +55,7 @@ export default class Layers extends React.PureComponent {
     const layers = this.getLayers();
 
     return (
-      <div className="get-started">
-        <h2>Your Moves History</h2>
-
+      <div className="configure-layers">
         <h3>Layers</h3>
         <div className="layer-selector">
           {layers.map(layer => {
