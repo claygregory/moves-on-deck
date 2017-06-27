@@ -1,7 +1,7 @@
 
 # Moves On Deck
 
-Moves On Deck is a WebGL-powered visualization of your [Moves-App](https://www.moves-app.com/) location history built with React and Uber's Deck.gl framework.
+Moves On Deck is a WebGL-powered visualization of your [Moves-App](https://www.moves-app.com/) location history, built with React and Uber's deck.gl framework.
 
 ## Usage
 
@@ -33,12 +33,12 @@ MAPBOX_ACCESS_TOKEN=your_token gulp
 
 ### Production Build
 
-As with above, supply a Mapbox API key specific to your distribution to Gulp. Running with `--type=production` will compress and ugilfy the build:
+As with above, supply a Mapbox API key specific to your distribution to Gulp. Running with `--type=production` will compress and uglify the build:
 ```bash
 MAPBOX_ACCESS_TOKEN=your_token gulp --type=production build
 ```
 
- The contents of the `dist` directory are ready to deploy to a static web server.
+ The contents of the `dist` directory are then ready to deploy to a static web server.
 
 ## License
 
