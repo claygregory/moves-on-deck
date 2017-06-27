@@ -31,6 +31,14 @@ const processStoryline = json => {
   const movesCleaner = new MovesCleaner();
   const normalizedSegments = movesCleaner.apply(segments);
 
+  const home = _.chain(normalizedSegments)
+    .filter(['type', 'place'])
+    .filter(s => _.get(s, 'place.name', '') === 'Home')
+    .map(s => _.get(s, 'place.location'))
+    .map(latLonToPair)
+    .first()
+    .value(); 
+
   const moves = _.chain(normalizedSegments)
     .filter(['type', 'move'])
     .groupBy('activity')
@@ -68,8 +76,8 @@ const processStoryline = json => {
     .values()
     .value();
 
-
   return {
+    home,
     moves,
     places
   };
