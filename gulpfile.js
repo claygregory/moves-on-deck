@@ -15,10 +15,10 @@ const buffer = require('vinyl-buffer');
 const gutil = require('gulp-util');
 const source = require('vinyl-source-stream');
 
-const watchify = require('watchify');
 const webserver = require('gulp-webserver');
 
 const production = gutil.env.type === 'production';
+process.env.NODE_ENV = production ? 'production' : 'development';
 
 gulp.task('build', ['build-html', 'build-js', 'build-css']);
 
@@ -28,7 +28,6 @@ gulp.task('build-html', function () {
 });
 
 gulp.task('build-js', function () {
-  process.env.NODE_ENV = production ? 'production' : 'development';
   return browserify({ entries: 'app/js/app.jsx', extensions: ['.js', '.jsx'], debug: !production })
       .plugin(bundleCollapser)
       .transform(babelify, { presets: ['es2015', 'react'], plugins: ['transform-object-rest-spread'] })

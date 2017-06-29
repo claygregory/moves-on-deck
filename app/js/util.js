@@ -1,15 +1,9 @@
 
 import MovesCleaner from '@claygregory/moves-cleaner';
 
+import {colors} from './config';
 import {scaleLog} from 'd3-scale';
 import _ from 'lodash';
-
-const colors = {
-  airplane: [27,  231, 255, 190],
-  car: [228,  255, 26, 120],
-  train: [110,  235, 131, 120],
-  other: [255,  87, 20, 120]
-};
 
 const buildMoves = storyline => {
   return _.chain(storyline)
@@ -20,7 +14,7 @@ const buildMoves = storyline => {
         type: segment.activity === 'airplane' && segment.distance > 10000 ? 'arc' : 'path',
         distance: segment.distance,
         path: _.map(segment.trackPoints, latLonToPair),
-        color: _.get(colors, segment.activity, colors.other)
+        color: colors(segment.activity)
       };
     }))
     .value();
@@ -35,7 +29,7 @@ const buildPlaces = storyline => {
       const place = _.last(visits).place;
       const name = place.name;
       const position = place.location ? latLonToPair(place.location) : null;
-      const color = [110,  235, 131, 255];
+      const color =  colors('place');
       const radius = scaleLog().base(2)
         .domain([1, 30])
         .rangeRound([20, 120])
@@ -70,7 +64,11 @@ const parseFile = (file, callback) => {
   const reader = new FileReader();
 
   reader.onload = evt => {
-    callback(null, JSON.parse(evt.target.result));
+    try {
+      callback(null, JSON.parse(evt.target.result));
+    } catch(err) {
+      callback(err);
+    }
   };
 
   reader.readAsText(file);

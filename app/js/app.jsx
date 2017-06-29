@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import MapGL from 'react-map-gl';
 
 import InfoPanel from './info-panel';
+import config from './config';
 
 import _ from 'lodash';
 import autobind from 'react-autobind';
@@ -137,7 +138,7 @@ class App extends React.PureComponent {
           data: arcs,
           getSourcePosition: s => _.first(s.path),
           getTargetPosition: s => _.last(s.path),
-          strokeWidth: 2
+          ...config.arc
         }));
       }
 
@@ -145,9 +146,7 @@ class App extends React.PureComponent {
         layers.push(new PathLayer({
           id: `path-${activity}`,
           data: paths,
-          rounded: true,
-          widthMinPixels: 1,
-          widthMaxPixels: 1
+          ...config.path
         }));
       }
 

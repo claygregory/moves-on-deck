@@ -9,8 +9,8 @@ export default class GettingStarted extends React.PureComponent {
         </p>
 
         <h3>Getting Started</h3>
-        <p>Export your history from your <a href="https://accounts.moves-app.com/">Moves-App account page</a>, then
-        drag and drop your <b>storyline.json</b> here to get started.</p>
+        <p>Export your history from your <a href="https://accounts.moves-app.com/">Moves-App account</a>, extract the JSON archive, and then
+        drag and drop your <b>storyline.json</b> here.</p>
 
         <h3>Privacy</h3>
         <p>Everything runs locally in your browser. So don't worry, no sensitive data is uploaded.</p>
@@ -18,7 +18,7 @@ export default class GettingStarted extends React.PureComponent {
         <footer className="credits">
           <p>
             Built by <a href="https://claygregory.com/">Clay Gregory</a>. Full source code available on <a href="https://github.com/claygregory/moves-on-deck">GitHub</a>.
-            Map tiles by <a href="https://www.mapbox.com">Mapbox</a>.
+            Map layer by <a href="https://www.mapbox.com">Mapbox</a>.
             Icons by <a href="https://icons8.com/">Icons8</a>.
           </p>
         </footer>

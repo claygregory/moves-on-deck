@@ -12,6 +12,7 @@
   "dependencies": {
     "@claygregory/moves-cleaner": "^1.1.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "d3-color": "^1.0.3",
     "d3-scale": "^1.0.6",
     "deck.gl": "^4.0.6",
     "immutable": "^3.8.1",
@@ -42,7 +43,6 @@
     "gulp-webserver": "^0.9.1",
     "sass-inline-image": "^0.0.3",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.9.0"
+    "vinyl-source-stream": "^1.1.0"
   }
 }
