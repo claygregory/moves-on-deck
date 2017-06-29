@@ -2,7 +2,7 @@
 import MovesCleaner from '@claygregory/moves-cleaner';
 
 import {colors} from './config';
-import {scaleLog} from 'd3-scale';
+import {scalePow} from 'd3-scale';
 import _ from 'lodash';
 
 const buildMoves = storyline => {
@@ -30,7 +30,7 @@ const buildPlaces = storyline => {
       const name = place.name;
       const position = place.location ? latLonToPair(place.location) : null;
       const color =  colors('place');
-      const radius = scaleLog().base(2)
+      const radius = scalePow().exponent(2)
         .domain([1, 30])
         .rangeRound([20, 120])
         .clamp(true)(visits.length);
