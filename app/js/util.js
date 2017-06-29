@@ -52,7 +52,7 @@ const locateHome = storyline => {
     .filter(['type', 'place'])
     .filter(s => _.get(s, 'place.name', '') === 'Home')
     .map(s => _.get(s, 'place'))
-    .first()
+    .last()
     .value();
 };
 
