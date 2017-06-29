@@ -52,6 +52,8 @@ class App extends React.PureComponent {
         disablePreview
         style={{}}
         onDrop={this._onDrop}
+        onDragEnter={this._onDragEnter}
+        onDragLeave={this._onDragLeave}
         className={this.state.dropStatus ? `drop-zone drop-status ${this.state.dropStatus}` : 'drop-zone'}>
 
         <InfoPanel
@@ -117,6 +119,14 @@ class App extends React.PureComponent {
       else
         this._onUnsupportedDrop();
     });
+  }
+
+  _onDragEnter() {
+    this.setState({ dropStatus: 'ready' });
+  }
+
+  _onDragLeave() {
+    this.setState({ dropStatus: '' });
   }
 
   _onLayersChange(activeLayers) {

@@ -93,21 +93,19 @@ p {
 
 	margin-top: 0;
 
-	-webkit-transition: margin-top 0.1s ease-in;
-	transition: margin-top 0.1s ease-in;
+	-webkit-transition: margin-top 0.25s ease;
+	transition: margin-top 0.25s ease;
 
 	&.drop-status {
 		$error_size: $line_height + $padding_base * 2;
 		margin-top: $error_size;
 
-		-webkit-transition: margin-top 0.25s ease-out;
-		transition: margin-top 0.25s ease-out;
-
-		@mixin drop-zone-status($color, $message) {
-			background-color: $color;
-			color: white;
+		@mixin drop-zone-status($bgcolor, $color, $message) {
+			background-color: $bgcolor;
+			color: $color;
 			content: $message;
 			display: block;
+			font-weight: 500;
 			padding: $padding_base 0;
 			height: $line_height;
 			position: absolute;
@@ -117,12 +115,16 @@ p {
 			right: 0;
 		}
 
+		&.ready:after {
+			@include drop-zone-status(#EDFF6D, #B4BF74, "Just drop your storyline anywhere…")
+		}
+
 		&.processing:after {
-			@include drop-zone-status(#45B445, "Processing file…")
+			@include drop-zone-status(#64D678, white, "Processing…")
 		}
 
 		&.unsupported-file:after {
-			@include drop-zone-status(#FF1735, "Oops, the file you provided doesn't look like a Moves storyline")
+			@include drop-zone-status(#FF4159, white, "Oops, the file you provided doesn't look like a Moves storyline")
 		}
 	}
 }
