@@ -26,14 +26,14 @@ yarn
 
 ### Running Locally
 
-By default, running Gulp will build the project and launch a local webserver on port 8000 with hot-reloading enabled. To use the Mapbox layer, you'll need to supply a Mapbox API key specific to your distribution. Your can request a free key from [Mapbox](https://www.mapbox.com) for limited usage. This key will be statically inlined from the `MAPBOX_ACCESS_TOKEN` environmental variable using [envify](https://github.com/hughsk/envify):
+By default, Gulp will build the project and launch a local webserver on port 8000 with hot-reloading enabled. To use the Mapbox layer, you'll need to supply your own Mapbox API key, via the `MAPBOX_ACCESS_TOKEN` environmental variable. Your can request a free key from [Mapbox](https://www.mapbox.com) for limited usage.
 ```bash
 MAPBOX_ACCESS_TOKEN=your_token gulp
 ```
 
 ### Production Build
 
-As with above, supply a Mapbox API key specific to your distribution to Gulp. Running with `--type=production` will compress and uglify the build:
+As with above, you'll need a Mapbox API key. The value in the `MAPBOX_ACCESS_TOKEN` environmental variable will be statically inlined to your production build using [envify](https://github.com/hughsk/envify), ready for distribution. Running with `--type=production` will also compress and uglify the build:
 ```bash
 MAPBOX_ACCESS_TOKEN=your_token gulp --type=production build
 ```
