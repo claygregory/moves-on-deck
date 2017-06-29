@@ -5,19 +5,26 @@ import _ from 'lodash';
 const config = {
 
   colors: {
-    airplane: 'rgba(27, 231, 255, 0.75)',
-    car: 'rgba(228, 255, 26, 0.50)',
-    train: 'rgba(110, 235, 131, 0.50)',
-    place: 'rgba(110,  235, 131, 1.00)',
-    other: 'rgba(255, 87, 20, 0.50)'
+    airplane: 'rgba(49, 140, 231, 0.5)', // #318CE7 - bleu de france
+    bus: 'rgba(86, 238, 244, 0.5)', // #56EEF4 - electric blue
+    boat: 'rgba(42, 82, 190, 0.5)', // #2A52BE - cerulean blue
+    car: 'rgba(255, 225, 53, 0.5)', // #FFE135 - banana yellow
+    train: 'rgba(186, 0, 0, 0.5)', // #BA0000 - boston university red
+    underground: 'rgba(255, 117, 56, 0.5)', // #FF7538 - crayola orange
+    place: 'rgba(255,  255, 255, 1.00)', // #ffffff - white
+    walking: 'rgba(3, 192, 60, 0.5)', // #03C03C - dark pastel green
+    other: 'rgba(241, 236, 206, 0.5)' // #F1ECCE champaigne
   },
+
   arc: {
-    strokeWidth: 2
+    strokeWidth: 4
   },
+  
   path: {
     rounded: true,
-    widthMinPixels: 1,
-    widthMaxPixels: 1
+    widthScale: 15,
+    widthMinPixels: 2,
+    widthMaxPixels: 4
   }
 };
 

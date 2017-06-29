@@ -84,8 +84,8 @@ class App extends React.PureComponent {
   }
 
   _initializeWebGL(gl) {
-    // gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE_MINUS_DST_ALPHA, gl.ONE);
-    // gl.blendEquation(gl.FUNC_ADD);
+    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE);
+    gl.blendEquation(gl.FUNC_ADD);
   }
 
   _loadHistory(history) {

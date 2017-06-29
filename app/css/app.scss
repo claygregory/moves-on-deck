@@ -115,15 +115,15 @@ p {
 		}
 
 		&.ready:after {
-			@include drop-zone-status(#EDFF6D, #B4BF74, "Just drop your storyline anywhere…")
+			@include drop-zone-status(#FFE96C, #333333, "Drop your storyline anywhere…")
 		}
 
 		&.processing:after {
-			@include drop-zone-status(#64D678, white, "Processing…")
+			@include drop-zone-status(#19C54D, white, "Processing…")
 		}
 
 		&.unsupported-file:after {
-			@include drop-zone-status(#FF4159, white, "Oops, the file you provided doesn't look like a Moves storyline")
+			@include drop-zone-status(#D35C5C, white, "Oops, the file you provided doesn't look like a Moves storyline")
 		}
 	}
 }
@@ -225,10 +225,10 @@ p {
 
 	label {
 		display: block;
-		font-size: $font_size_small;
+		font-size: $font_size;
 
 		& + label {
-			margin-top: $padding_base / 8;
+			margin-top: $padding_base / 4;
 		}
 	}
 
@@ -238,3 +238,4 @@ p {
 		float: right;
 	}
 }
+
