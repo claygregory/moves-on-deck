@@ -85,9 +85,46 @@ p {
 #app-container, .drop-zone {
 	display: block;
 	height: 100%;
+	position: relative;
 	width: 100%;
+}
 
+.drop-zone {
 
+	margin-top: 0;
+
+	-webkit-transition: margin-top 0.1s ease-in;
+	transition: margin-top 0.1s ease-in;
+
+	&.drop-status {
+		$error_size: $line_height + $padding_base * 2;
+		margin-top: $error_size;
+
+		-webkit-transition: margin-top 0.25s ease-out;
+		transition: margin-top 0.25s ease-out;
+
+		@mixin drop-zone-status($color, $message) {
+			background-color: $color;
+			color: white;
+			content: $message;
+			display: block;
+			padding: $padding_base 0;
+			height: $line_height;
+			position: absolute;
+			text-align: center;
+			top: -$error_size;
+			left: 0;
+			right: 0;
+		}
+
+		&.processing:after {
+			@include drop-zone-status(#45B445, "Processing file…")
+		}
+
+		&.unsupported-file:after {
+			@include drop-zone-status(#FF1735, "Oops, the file you provided doesn't look like a Moves storyline")
+		}
+	}
 }
 
 .icon {

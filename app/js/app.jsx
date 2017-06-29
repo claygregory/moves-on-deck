@@ -26,6 +26,7 @@ class App extends React.PureComponent {
         height: 500
       },
       activeLayers: [],
+      dropStatus: null,
       history: null
     };
 
@@ -48,10 +49,10 @@ class App extends React.PureComponent {
     return (
       <Dropzone
         disableClick
+        disablePreview
         style={{}}
         onDrop={this._onDrop}
-        accept="application/json"
-        className="drop-zone">
+        className={this.state.dropStatus ? `drop-zone drop-status ${this.state.dropStatus}` : 'drop-zone'}>
 
         <InfoPanel
           history={this.state.history}
@@ -89,6 +90,7 @@ class App extends React.PureComponent {
     this.setState({
       viewport: { ...this.state.viewport, zoom: 10, latitude: _.get(history, 'home.location.lat'), longitude: _.get(history, 'home.location.lon') },
       history: history,
+      dropStatus: '',
       activeLayers: _.union(_.keys(history.moves).sort(), ['places'])
     });
   }
@@ -107,13 +109,22 @@ class App extends React.PureComponent {
   }
 
   _onDrop(acceptedFiles, rejectedFiles) {
+    this.setState({ dropStatus: 'processing' });
+
     parseFile(acceptedFiles[0], (err, json) => {
-      this._loadHistory(processStoryline(json));
+      if (!err && json instanceof Array)
+        this._loadHistory(processStoryline(json));
+      else
+        this._onUnsupportedDrop();
     });
   }
 
   _onLayersChange(activeLayers) {
     this.setState({ activeLayers });
+  }
+
+  _onUnsupportedDrop() {
+    this.setState({ dropStatus: 'unsupported-file' });
   }
 
   _renderHistoryLayer() {

@@ -71,7 +71,11 @@ const parseFile = (file, callback) => {
     }
   };
 
-  reader.readAsText(file);
+  try {
+    reader.readAsText(file);
+  } catch(err) {
+    callback(err);
+  }
 };
 
 const processStoryline = json => {
