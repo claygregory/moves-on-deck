@@ -13,7 +13,7 @@ export default class GettingStarted extends React.PureComponent {
         drag and drop your <b>storyline.json</b> here.</p>
 
         <h3>Privacy</h3>
-        <p>Everything runs locally in your browser. So don't worry, no sensitive data is uploaded.</p>
+        <p>Everything runs locally, right in your browser. So don't worry, no sensitive data will be uploaded.</p>
 
         <footer className="credits">
           <p>
