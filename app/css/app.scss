@@ -9,7 +9,10 @@ $font_size_small: 12px;
 $font_size_tiny: 10px;
 $font_size_title: 24px;
 
+$icon_size: 20px;
+
 $line_height: 20px;
+$header_line_height: 28px;
 
 $padding_base: $line_height;
 $mobile_breakpoint: 520px;
@@ -47,6 +50,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
 	font-size: $font_size_title;
+	line-height: $header_line_height;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 h3 {
@@ -129,17 +136,17 @@ p {
 }
 
 .icon {
-	background-size: 20px 20px;
+	background-size: $icon_size $icon_size;
 	background-repeat: no-repeat;
 	cursor: pointer;
 	display: inline-block;
-	height: 20px;
+	height: $icon_size;
 	margin-left: $padding_base;
 	overflow: hidden;
 	text-decoration: none;
 	text-indent: 100%;
 	white-space: nowrap;
-	width: 20px;
+	width: $icon_size;
 }
 
 .icon-layers {
@@ -195,7 +202,7 @@ p {
 	transition: max-height 0.5s ease-in;
 
   &.minimized {
-  	max-height: $line_height + 2 * $padding_base;
+  	max-height: $header_line_height + 2 * $padding_base;
   	-webkit-transition-timing-function: ease-out;
   	transition-timing-function: ease-out;
   }
@@ -208,6 +215,7 @@ p {
   		float: right;
   		display: block;
   		height: 24px;
+  		margin-top: 4px;
   	}
   }
 
@@ -237,5 +245,12 @@ p {
 		font-size: $font_size_small;
 		float: right;
 	}
+}
+
+.mapboxgl-map, .overlays, .overlays canvas {
+	-webkit-user-select: none;  
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;
 }
 
