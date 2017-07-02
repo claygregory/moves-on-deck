@@ -24,9 +24,28 @@ export default class Summary extends React.PureComponent {
 
     return (
       <div className="summary">
+
+        <h3>Date Range</h3>
         <p>
-          Since {moment(summary.since).format('LL')} you've travelled approximately {Math.round(summary.total_distance).toLocaleString()} km and visited {summary.unique_places.toLocaleString()} unique places.
+          From <em>{moment(summary.since).format('LL')}</em> until <em>{moment(summary.until).format('LL')}</em>
         </p>
+
+        <h3>Movement</h3>
+        <dl>
+          <dt>Total distance</dt>
+          <dd>{Math.round(summary.total_distance).toLocaleString()} km</dd>
+        </dl>
+
+        <h3>Places</h3>
+
+        <dl>
+          <dt>Unique places</dt>
+          <dd>{summary.unique_places.toLocaleString()}</dd>
+
+          <dt>Farthest from home</dt>
+          <dd>{summary.farther_from_home.name} <span className="detail">{Math.round(summary.farther_from_home.distance).toLocaleString()} km away</span></dd>
+        </dl>
+
         <footer>
           Tip: hold down shift to rotate/tilt your perspective
         </footer>

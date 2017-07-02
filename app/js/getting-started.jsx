@@ -10,7 +10,7 @@ export default class GettingStarted extends React.PureComponent {
 
         <h3>Getting Started</h3>
         <p>Export your history from your <a href="https://accounts.moves-app.com/">Moves-App account</a>, extract the JSON archive, and then
-        drag and drop your <b>storyline.json</b> here.</p>
+        drag and drop your <em>storyline.json</em> here.</p>
 
         <h3>Privacy</h3>
         <p>Everything runs locally, right in your browser. So don't worry, no sensitive data will be uploaded.</p>

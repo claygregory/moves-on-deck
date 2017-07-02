@@ -35,15 +35,17 @@ export default class Layers extends React.PureComponent {
     const data = this.props.data;
 
     const moveLayers = _.map(_.keys(data.moves).sort(), layer => {
+      const count = data.moves[layer].length;
       return {
         id: layer,
-        description: `${data.moves[layer].length} trips`
+        description: `${count.toLocaleString()} ${count === 1 ? 'trip' : 'trips'}`
       };
     });
 
+    const placeCount = data.places.length;
     return _.concat({
       id: 'places',
-      description: `${data.places.length} locations`
+      description: `${placeCount.toLocaleString()} ${placeCount === 1 ? 'location' : 'locations'}`
     }, moveLayers);
   }
 
@@ -56,7 +58,7 @@ export default class Layers extends React.PureComponent {
 
     return (
       <div className="configure-layers">
-        <h3>Layers</h3>
+        <h3>Visible Layers</h3>
         <div className="layer-selector">
           {layers.map(layer => {
             return <label key={`layer-${layer.id}`}>

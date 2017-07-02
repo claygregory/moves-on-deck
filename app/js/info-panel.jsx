@@ -9,7 +9,7 @@ import autobind from 'react-autobind';
 const titles = {
   'default': 'Your Moves',
   'getting-started': 'Moves On Deck',
-  'layers': 'Visible Layers',
+  'layers': 'Layers',
 };
 
 export default class InfoPanel extends React.PureComponent {

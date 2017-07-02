@@ -3,6 +3,7 @@ import MovesCleaner from '@claygregory/moves-cleaner';
 
 import {colors} from './config';
 import {scalePow} from 'd3-scale';
+import distance from 'fast-haversine';
 import _ from 'lodash';
 
 const buildMoves = storyline => {
@@ -44,6 +45,24 @@ const buildPlaces = storyline => {
       };
     })
     .values()
+    .value();
+};
+
+const farthestFrom = (source, storyline) => {
+
+  return _.chain(storyline)
+    .filter(['type', 'place'])
+    .map(s => _.get(s, 'place'))
+    .filter(p => _.has(p, 'location'))
+    .map(p => {
+      const d = distance(source.location, p.location) / 1000;
+      return {
+        ...p,
+        distance: d
+      };
+    })
+    .sortBy('distance')
+    .last()
     .value();
 };
 
@@ -90,7 +109,9 @@ const processStoryline = json => {
 
   const summary = {
     since: _.chain(normalizedSegments).map('startTime').sortBy().first().value(),
+    until: _.chain(normalizedSegments).map('endTime').sortBy().last().value(),
     unique_places: places.length,
+    farther_from_home: farthestFrom(home, normalizedSegments),
     total_distance: _.reduce(_.flatten(_.values(moves)), (sum, move) => sum + (move.distance || 0), 0) / 1000
   };
 
