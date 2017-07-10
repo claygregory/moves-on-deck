@@ -1,11 +1,11 @@
 
 # Moves On Deck
 
-Moves On Deck is a WebGL-powered visualization of your [Moves-App](https://www.moves-app.com/) location history, built with React and Uber's deck.gl framework.
+Moves On Deck is a WebGL-powered visualization of your [Moves app](https://www.moves-app.com/) location history, built with React and Uber's deck.gl framework.
 
 ## Usage
 
-This project is currently available at <https://projects.claygregory.com/moves-on-deck/>. Data processing is entirely client-side in browser, so there's no need to deploy your own copy if just interested as an end-user.
+This project is currently available at <https://apps.claygregory.com/moves-on-deck/>. Data processing is entirely client-side in browser, so there's no need to deploy your own copy if just interested as an end-user.
 
 <img src="./screenshots/screenshot-1.png" width="100%"/>
 
