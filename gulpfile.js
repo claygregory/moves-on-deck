@@ -4,6 +4,7 @@ const clean = require('gulp-clean');
 const babelify = require('babelify');
 const browserify = require('browserify');
 const bundleCollapser = require('bundle-collapser/plugin');
+const dotenv = require('dotenv');
 const envify = require('envify');
 const uglify = require('gulp-uglify');
 const watchify = require('watchify');
@@ -21,6 +22,8 @@ const webserver = require('gulp-webserver');
 
 const production = gutil.env.type === 'production';
 process.env.NODE_ENV = production ? 'production' : 'development';
+
+dotenv.config();
 
 const bundle = watch => {
 

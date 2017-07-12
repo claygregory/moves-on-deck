@@ -24,16 +24,19 @@ or
 yarn
 ```
 
+### Environmental Variables
+To use the Mapbox layer, you'll need to supply the your own Mapbox API key, via the `MAPBOX_ACCESS_TOKEN` environmental variable. This can be provided on the command line, or placed in a `.env` file at the project root. Your can request a free key from [Mapbox](https://www.mapbox.com) for limited usage.
+
 ### Running Locally
 
-By default, Gulp will build the project and launch a local webserver on port 8000 with hot-reloading enabled. To use the Mapbox layer, you'll need to supply your own Mapbox API key, via the `MAPBOX_ACCESS_TOKEN` environmental variable. Your can request a free key from [Mapbox](https://www.mapbox.com) for limited usage.
+By default, Gulp will build the project and launch a local webserver on port 8000 with hot-reloading enabled. Be sure you've provided the Mapbox API key as described above.
 ```bash
 MAPBOX_ACCESS_TOKEN=your_token gulp
 ```
 
 ### Production Build
 
-As with above, you'll need a Mapbox API key. The value in the `MAPBOX_ACCESS_TOKEN` environmental variable will be statically inlined to your production build using [envify](https://github.com/hughsk/envify), ready for distribution. Running with `--type=production` will also compress and uglify the build:
+As with a dev build, you'll need to supply a Mapbox API key as described above. This key will be statically inlined to your production build using [envify](https://github.com/hughsk/envify), ready for distribution. Running with `--type=production` will also compress and uglify the build:
 ```bash
 MAPBOX_ACCESS_TOKEN=your_token gulp --type=production build
 ```
