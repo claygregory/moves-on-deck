@@ -64,8 +64,8 @@ class App extends React.PureComponent {
 
         <MapGL
           {...viewport}
-          perspectiveEnabled
-          onChangeViewport={this._onChangeViewport}
+          dragRotate
+          onViewportChange={this._onChangeViewport}
           mapStyle="mapbox://styles/mapbox/dark-v9"
           mapboxApiAccessToken={MAPBOX_TOKEN}>
 
