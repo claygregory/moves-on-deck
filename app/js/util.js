@@ -3,7 +3,7 @@ import MovesCleaner from '@claygregory/moves-cleaner';
 
 import {colors} from './config';
 import {scalePow} from 'd3-scale';
-import distance from 'fast-haversine';
+import distance from 'haversine-distance';
 import _ from 'lodash';
 
 const buildMoves = storyline => {

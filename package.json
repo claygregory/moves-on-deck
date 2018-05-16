@@ -10,11 +10,11 @@
   "author": "Clay Gregory <clay@claygregory.com>",
   "license": "MIT",
   "dependencies": {
-    "@claygregory/moves-cleaner": "^1.1.1",
+    "@claygregory/moves-cleaner": "^1.1.2",
     "d3-color": "^1.2.0",
     "d3-scale": "^2.0.0",
     "deck.gl": "^5.2.5",
-    "fast-haversine": "^1.0.0",
+    "haversine-distance": "^1.0.0",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",
     "luma.gl": "^5.2.0",
