@@ -62,10 +62,10 @@ export default class Layers extends React.PureComponent {
         <div className="layer-selector">
           {layers.map(layer => {
             return <label key={`layer-${layer.id}`}>
-                <input type="checkbox" checked={!_.includes(this.state.layersDisabled, layer.id)} onChange={this.onToggleLayer} value={layer.id}/>
-                {_.capitalize(layer.id)}
-                <span className="layer-detail">{layer.description}</span>
-              </label>;
+              <input type="checkbox" checked={!_.includes(this.state.layersDisabled, layer.id)} onChange={this.onToggleLayer} value={layer.id}/>
+              {_.capitalize(layer.id)}
+              <span className="layer-detail">{layer.description}</span>
+            </label>;
           })}
         </div>
       </div>
