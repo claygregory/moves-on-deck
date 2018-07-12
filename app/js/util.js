@@ -67,12 +67,29 @@ const farthestFrom = (source, storyline) => {
 };
 
 const locateHome = storyline => {
-  return _.chain(storyline)
+  let home = _.chain(storyline)
     .filter(['type', 'place'])
     .filter(s => _.get(s, 'place.name', '') === 'Home')
     .map(s => _.get(s, 'place'))
     .last()
     .value();
+
+  if (home) return home;
+
+  let mostVisited = _.chain(storyline)
+    .filter(['type', 'place'])
+    .groupBy(s => _.get(s, 'place.id', '---'))
+    .mapValues(list => ({
+      place: _.get(_.first(list), 'place'),
+      visits: list
+    }))
+    .values()
+    .sortBy(group => group.visits.length)
+    .map(group => group.place)
+    .last()
+    .value();
+
+  return mostVisited;
 };
 
 const latLonToPair = latLon => {
